@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations: #going to provide little more high level option to Ingress. 
+    kubernetes.io/ingress.class: nginx # telling kubernetes that we need an ingress controller based on nginx.
+    nginx.ingress.kubernetes.io/rewrite-target: /$1 # this will specify how nginx copy will behave.
+    #this will apply re-write and remove /api while sending to target. Remember we are using express api 
+    # to remove the trailing "/" on docker componse.
+spec:
+  rules:
+    - http:
+        paths: 
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          
+          - path: /api/?(.*)
+            backend: 
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
