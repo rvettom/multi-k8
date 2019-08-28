@@ -9,6 +9,7 @@ docker push rvettom/multi-client:$SHA
 docker push rvettom/multi-server:$SHA
 docker push rvettom/multi-worker:$SHA
 
-kubectl set image deployment/server-deployment server=rvettom/multi-server$SHA
-kubectl set image deployment/client-deployment client=rvettom/multi-client:$SHA
-kubectl set image deployment/worker-deployment worker=rvettom/multi-worker:$SHA
+kubectl apply -f k8s
+kubectl set image deployments/server-deployment server=rvettom/multi-server:$SHA
+kubectl set image deployments/client-deployment client=rvettom/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=rvettom/multi-worker:$SHA
