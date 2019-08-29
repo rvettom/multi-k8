@@ -14,7 +14,7 @@ before_install:
     # docker run -it -v $(pwd):/app sh 
     #use travis cli to encrypt travis encrypt-file filename. 
   - gcloud config set project multi-container-cluster #Poject ID in Goolge it will be defferent as project name
-  - gcloud config set compute/zone asia-south1-a # Zone where we create 
+  - gcloud config set compute/zone us-central1-a	# Zone where we create 
   - gcloud container clusters get-credentials my-cluster # name of the cluster
   - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t rvettom/react-test -f ./client/Dockerfile.dev ./client 
