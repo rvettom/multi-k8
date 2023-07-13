@@ -1,3 +1,4 @@
+##
 docker build -t rvettom/multi-client:latest -t rvettom/multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t rvettom/multi-server:latest -t rvettom/multi-server:$SHA -f ./server/Dockerfile ./server
 docker build -t rvettom/multi-worker:latest -t rvettom/multi-worker:$SHA -f ./worker/Dockerfile ./worker
